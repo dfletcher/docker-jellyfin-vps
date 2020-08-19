@@ -1,0 +1,43 @@
+version: "3.5"
+
+volumes:
+  config:
+  cache:
+
+services:
+
+  ssh:
+    image: kroniak/ssh-client
+    command: /bin/bash /usr/local/bin/tunnel
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./tunnel.sh:/usr/local/bin/tunnel
+      - ./keys/:/keys
+
+  jellyfin:
+    image: jellyfin/jellyfin
+    user: 1000:1000
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://${REMOTE_HOST:-localhost}
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - config:/config
+      - cache:/cache
+      - type: bind
+        source: E:/Music
+        target: /media/Music
+      - type: bind
+        source: E:/Music2
+        target: /media/Music2
+      - type: bind
+        source: E:/Music3
+        target: /media/Music3
+      - type: bind
+        source: E:/TV
+        target: /media/TV
+      - type: bind
+        source: E:/Movies
+        target: /media/Movies

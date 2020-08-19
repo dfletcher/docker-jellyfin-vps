@@ -1,0 +1,21 @@
+# Remote VPS/server host. Required.
+REMOTE_HOST=
+
+# Remote VPS/server user. Required.
+# You will need to perform a key exchange with this user. The key
+# will be generated inside container volume named ssh_dir.
+# The public key to exchange with server will be output to docker
+# logs on first run. If you plan on setting TUNNEL_REMOTE_PORT to
+# port 80 below, this user *must* be root. See README.md.
+REMOTE_USER=
+
+# Port to listen on VPS.
+TUNNEL_REMOTE_PORT=8096
+
+# Other configurable variables. See tunnel.sh for details.
+#TUNNEL_SOURCE_HOST=
+#TUNNEL_SOURCE_PORT=
+#TUNNEL_REMOTE_HOST=
+#GENERATED_KEY_TYPE=
+#GENERATED_KEY_SIZE=
+#SSH_HOME_DIR=
