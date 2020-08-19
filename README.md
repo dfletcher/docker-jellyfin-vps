@@ -4,7 +4,7 @@ This `docker-compose` solution lauches Jellyfin along with a tunnel connection t
 
 This SSH reverse proxy solution means your Jellyfin instance can be accessed from the internet without requiring any special configuration of home routers to achieve it. By using `docker-compose`, Jellyfin and the tunnel to the server are launched together and shut down together. The system is configured to survive a restart of the Docker host.
 
-On the server, SSH access and the ability to modify `/etc/ssh/sshd_config` is required. On your media center server, Docker and git are required (and nothing else).
+On your VPS server, SSH access and the ability to modify `/etc/ssh/sshd_config` is required. On your media center server, Docker and git are required (and nothing else).
 
 ## Setup instructions
 
