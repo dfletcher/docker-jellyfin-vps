@@ -7,8 +7,8 @@ volumes:
 services:
 
   ssh:
-    image: kroniak/ssh-client
-    command: /bin/bash /usr/local/bin/tunnel
+    image: alpine
+    command: /bin/sh -c "apk add openssh-client bash && /bin/bash /usr/local/bin/tunnel"
     restart: unless-stopped
     env_file: .env
     volumes:
@@ -17,7 +17,8 @@ services:
 
   jellyfin:
     image: jellyfin/jellyfin
-    user: 1000:1000
+    ports:
+      - 80:8096
     restart: unless-stopped
     env_file: .env
     environment:
@@ -27,17 +28,17 @@ services:
       - config:/config
       - cache:/cache
       - type: bind
-        source: E:/Music
+        source: /media/Music
         target: /media/Music
       - type: bind
-        source: E:/Music2
+        source: /media/Music2
         target: /media/Music2
       - type: bind
-        source: E:/Music3
+        source: /media/Music3
         target: /media/Music3
       - type: bind
-        source: E:/TV
+        source: /media/TV
         target: /media/TV
       - type: bind
-        source: E:/Movies
+        source: /media/Movies
         target: /media/Movies
