@@ -1,4 +1,4 @@
-version: "3.5"
+version: "2.4"
 
 volumes:
   config:
@@ -17,28 +17,43 @@ services:
 
   jellyfin:
     image: jellyfin/jellyfin
+    runtime: nvidia
     ports:
       - 80:8096
     restart: unless-stopped
     env_file: .env
     environment:
       - JELLYFIN_PublishedServerUrl=http://${REMOTE_HOST:-localhost}
+      - NVIDIA_DRIVER_CAPABILITIES=all
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - config:/config
       - cache:/cache
       - type: bind
-        source: /media/Music
+        source: /media/fletch/Music
         target: /media/Music
       - type: bind
-        source: /media/Music2
+        source: /media/fletch/Music2
         target: /media/Music2
       - type: bind
-        source: /media/Music3
+        source: /media/fletch/Music3
         target: /media/Music3
       - type: bind
-        source: /media/TV
+        source: /media/fletch/Music4
+        target: /media/Music4
+      - type: bind
+        source: /media/fletch/MusicNew
+        target: /media/MusicNew
+      - type: bind
+        source: /media/fletch/TV
         target: /media/TV
       - type: bind
-        source: /media/Movies
+        source: /media/fletch/Movies
         target: /media/Movies
+      - type: bind
+        source: /media/fletch/Books
+        target: /media/Books
+      - type: bind
+        source: ./
+        target: /app
+
