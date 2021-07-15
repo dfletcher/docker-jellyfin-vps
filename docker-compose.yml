@@ -16,7 +16,9 @@ services:
       - ./keys/:/keys
 
   jellyfin:
-    image: jellyfin/jellyfin
+    build:
+      context: .
+    #image: jellyfin/jellyfin
     runtime: nvidia
     ports:
       - 80:8096
