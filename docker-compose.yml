@@ -16,9 +16,10 @@ services:
       - ./keys/:/keys
 
   jellyfin:
-    build:
-      context: .
+    #build:
+    #  context: .
     #image: jellyfin/jellyfin
+    image: gcr.io/my-project-1476990892580/home-automation-jellyfin:latest
     runtime: nvidia
     ports:
       - 80:8096
